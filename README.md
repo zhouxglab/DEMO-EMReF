@@ -4,7 +4,7 @@
 If you use the precompiled binary `DEMO-EMReF`, no Python environment is required. When you run the binary, it may appear to be unresponsive for a short period. This is normal, as the program is loading cached data and initializing the model. Please be patient; processing will start automatically once the cache is loaded.
 # Clone the Repository
 ```bash
-git clone git@github.com:xiaogenz/DEMO-EMReF.git
+git clone git@github.com:zhouxglab/DEMO-EMReF.git
 cd DEMO-EMReF
 ```
 # Show help
