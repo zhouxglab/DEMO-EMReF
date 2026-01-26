@@ -30,8 +30,6 @@ def main(params):
     mask_map = params['mask_map']
     mask_contour = params['contour']
     mask_str = params['mask_str']
-    # mask_str_radius = params['mask_str_radius']
-    # mask_out = params['mask_out']
     inverse_mask = params['inverse_mask'] 
     gpu_id = params.get('gpu', "0")
     batch_size = params["batch_size"]
