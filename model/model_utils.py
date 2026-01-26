@@ -70,7 +70,7 @@ def weights_init_orthogonal(m):
         nn.init.constant_(m.bias, 0)
         nn.init.constant_(m.weight, 1.0)
     elif hasattr(m, 'weight') and isinstance(m.weight, torch.Tensor):
-        if m.weight.dim() >= 2:  # 仅当张量维度 >= 2 时进行正交初始化
+        if m.weight.dim() >= 2:  
             nn.init.orthogonal_(m.weight, gain=1)
     if hasattr(m, 'bias') and isinstance(m.bias, torch.Tensor):
         m.bias.data.fill_(0)
