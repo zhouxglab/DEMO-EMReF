@@ -24,7 +24,7 @@ import textwrap
 def main(params):
     params = argparser()
     config = params['config']
-    # 从配置参数中提取相应的值
+    # Extract parameters from config
     in_map = params['F']
     out_map = params['output']
     mask_map = params['mask_map']
@@ -39,8 +39,7 @@ def main(params):
     use_gpu = params.get('gpu', True)
     interp_back = params.get('interp_back', True)
     model_dir = params['model']['path']
-
-    BOX_SIZE = params['model']['length']['box_size']  # 从配置文件中获取BOX_SIZE
+    BOX_SIZE = params['model']['length']['box_size']  
     PERCENTILE = 99.999
     # ===== Print welcome banner and user-provided args =====
     print(textwrap.dedent(r"""
@@ -55,7 +54,7 @@ def main(params):
     ========================================================================
     """).strip())
 
-    # 设置CUDA环境
+    # Set CUDA environment
     os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
     if use_gpu:
         os.environ["CUDA_VISIBLE_DEVICES"] = gpu_id
@@ -69,7 +68,7 @@ def main(params):
         os.environ["CUDA_VISIBLE_DEVICES"] = ""
         print("# Running on CPU")
 
-    # 校验步长范围
+    # Check stride range
     if not (48 >= stride >= 6):
         raise ValueError("`--stride` (`-s`) must be in the range of [6, 48]")
 
@@ -101,7 +100,7 @@ def main(params):
 
     print("# Loading the input map...")
 
-    # 加载输入地图
+    # Load input map
     map, origin, nxyz, voxel_size, nxyz_origin = parse_map(in_map, ignorestart=False, apix=apix)
     print(f"# Original map dimensions: {nxyz_origin}")
 
@@ -123,7 +122,7 @@ def main(params):
 
     _, _, _, old_voxel_size, _ = parse_map(in_map, ignorestart=False, apix=None)
 
-    # 对掩膜的处理
+    # Process mask map if provided
     if mask_map is not None:
         map_mask = map_volume.copy()
         del map_volume
@@ -233,7 +232,7 @@ def main(params):
     map_pred = np.zeros_like(padded_map, dtype=np.float32)
     denominator = np.zeros_like(padded_map, dtype=np.float32)
 
-    # 执行推理
+    # Run inference
     print("# Start processing...")
 
     if "infer_MR" in config:
@@ -258,35 +257,21 @@ def main(params):
                 if len(positions) == 0:
                     break
 
-                # 构造输入张量
-                # from torch import FloatTensor as FT
-                # from torch.autograd import Variable as V    
-                # X = V(FT(chunks), requires_grad=False).view(-1, 1, BOX_SIZE, BOX_SIZE, BOX_SIZE)
-                # if use_gpu:
-                #     X = X.cuda()
-
-                # # 模型推理
-                # y_pred = model(X, istrain=False).view(-1, BOX_SIZE, BOX_SIZE, BOX_SIZE)
-                # y_pred = y_pred.cpu().detach().numpy()
-                # 构造输入张量（无 autograd，无 Variable）
                 X = torch.tensor(
                     chunks,
                     dtype=torch.float32,
                     device='cuda' if use_gpu else 'cpu'
                 ).view(-1, 1, BOX_SIZE, BOX_SIZE, BOX_SIZE)
 
-                # 模型推理（彻底关闭梯度）
                 with torch.no_grad():
                     y_pred = model(X, istrain=False)
 
                 y_pred = y_pred.view(-1, BOX_SIZE, BOX_SIZE, BOX_SIZE)
                 y_pred = y_pred.cpu().numpy()
-                # 更新输出地图
+
                 map_pred, denominator = map_batch_to_map(map_pred, denominator, positions, y_pred, BOX_SIZE)
 
-                # 更新 tqdm 进度条
                 pbar.update(len(positions))
-
 
     map_pred = (map_pred / denominator.clip(min=1))[BOX_SIZE:BOX_SIZE + nxyz[2], BOX_SIZE:BOX_SIZE + nxyz[1], BOX_SIZE:BOX_SIZE + nxyz[0]]
 
