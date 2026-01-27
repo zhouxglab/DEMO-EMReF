@@ -15,23 +15,23 @@ You can download via browser or wget:
 wget http://zhouxglab.com/DEMO-EMReF/download/DEMO-EMReF_dist.tar.gz
 ```
 
-# Extract the package
+### Extract the package
 ```bash
 tar -xzvf DEMO-EMReF_dist.tar.gz
 ```
-# Grant execute permission to the executable file
+### Grant execute permission to the executable file
 ```bash
 chmod +x ./dist/DEMO-EMReF
 ```
-# Show help
+### Show help
 ```bash
 ./dist/DEMO-EMReF -h
 ```
-# Basic usage
+### Basic usage
 ```bash
 ./dist/DEMO-EMReF -F /path/to/input_map.mrc -o /path/to/output_map_refined.mrc
 ```
-# Full example
+### Full example
 ```bash
 ./dist/DEMO-EMReF -F /path/to/input_map.mrc -o /path/to/output_map_refined.mrc --mode HR --gpu 0 -b 8 -s 24
 ```
