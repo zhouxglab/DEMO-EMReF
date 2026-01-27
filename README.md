@@ -74,7 +74,7 @@ conda activate DEMO-EMReF_env
 ```
 This command will create a Python conda virtual environment named "DEMO-EMReF_env" and install all the required packages.
 
-# Python package requirements:
+### Python package requirements:
     pytorch (2.0.1) (https://pytorch.org)
     pytorch-cuda (11.8) (https://pytorch.org)
     biopython (1.73) (https://biopython.org/)
@@ -86,11 +86,11 @@ This command will create a Python conda virtual environment named "DEMO-EMReF_en
     
 # Compile Accelerated Interpolation Module (interp3d)
 For faster processing (especially when using --interp_back), we recommend compiling the Fortran-based interp3d module using f2py.
-# Step 1: Activate environment
+### Step 1: Activate environment
 ```bash
 conda activate DEMO-EMReF_env
 ```
-# Step 2: Compile
+### Step 2: Compile
 ```bash
 f2py -c ./interp3d.f90 -m interp3d
 ```
@@ -101,7 +101,7 @@ f2py -c ./interp3d.f90 -m interp3d
 `Ubuntu/Debian: sudo apt-get install gfortran`
 
 `Conda: conda install -c conda-forge gfortran==11.4`
-# Step 3: Custom Compiler (If needed) If gfortran is not in your PATH, specify it manually:
+### Step 3: Custom Compiler (If needed) If gfortran is not in your PATH, specify it manually:
 ```bash
 f2py -c ./interp3d.f90 -m interp3d --fcompiler=gnu95 --f77exec=/path/to/gfortran --f90exec=/path/to/gfortran
 ```
@@ -109,7 +109,7 @@ For more information about f2py, please refer to the [official documentation](ht
 
 How it works: The interp3d module provides high-performance 3D cubic interpolation. The main script (predict.py) automatically detects if the compiled module exists and uses it for acceleration.
 
-# How to Run DEMO-EMReF:
+### How to Run DEMO-EMReF:
 ```bash
 python predict.py -F /path/to/input_map.mrc -o /path/to/output_map_refined.mrc [Options]
 ```
