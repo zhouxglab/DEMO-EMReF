@@ -13,7 +13,7 @@ You can download the precompiled package using either the direct link or from Gi
 ### Option 2: GitHub release
 ```bash
 # Download the example ZIP file from GitHub
-wget https://github.com/zhouxglab/DEMO-EMReF/releases/download/v1.0/example.zip
+wget http://zhouxglab.com/DEMO-EMReF/download/DEMO-EMReF_dist.tar.gz
 ```
 
 # Extract the package
