@@ -41,7 +41,7 @@ unzip example.zip -d ./example
 | `--interp_back`      | Interpolate output back to original voxel size                               |
 # Local Installation (Conda Environment):
 
-# Clone the Repository
+Clone the Repository
 ```bash
 git clone https://github.com/zhouxglab/DEMO-EMReF.git
 cd DEMO-EMReF
