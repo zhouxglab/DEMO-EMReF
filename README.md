@@ -5,12 +5,12 @@ If you use the precompiled binary `DEMO-EMReF`, no Python environment is require
 
 ## Download DEMO-EMReF
 
-You can download the precompiled package using either the direct link or from GitHub releases.
+You can download via browser or wget:
 
 ### Option 1: Direct link
 [Download DEMO-EMReF_dist.tar.gz](http://zhouxglab.com/DEMO-EMReF/download/DEMO-EMReF_dist.tar.gz)
 
-### Option 2: GitHub release
+### Option 2: Download via HTTP
 ```bash
 wget http://zhouxglab.com/DEMO-EMReF/download/DEMO-EMReF_dist.tar.gz
 ```
@@ -47,9 +47,9 @@ unzip example.zip -d ./example
 # Options in DEMO-EMReF
 | Option               | Description                                                                  |
 | -------------------- | ---------------------------------------------------------------------------- |
-| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc、.map、.ccp4 format)                                 |
+| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc、.map、.ccp4 format)                        |
 | `-o, --output`       | Output refined map                                                           |
-| `--mode {HR,MR,ET}`  | Inference mode (default: HR)                                                 |
+| `--mode {HR,MR,ET}`  | Inference mode: HR (High Res, default), MR (Medium Res), ET (Tomography)     |
 | `--config`           | Custom JSON config file                                                      |
 | `--gpu`              | GPU ID(s), e.g. `0` or `0,1`                                                 |
 | `-b, --batch_size`   | Batch size (default: 8, increase if GPU memory allows)                       |
