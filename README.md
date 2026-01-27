@@ -63,6 +63,11 @@ This command will create a Python conda virtual environment named "DEMO-EMReF_en
     mrcfile (1.5.3) (https://github.com/ccpem/mrcfile)
     timm(1.0.11) (https://github.com/rwightman/pytorch-image-models)
     tqdm (4.65.0) (https://github.com/tqdm/tqdm)
+    
+# Full example
+```bash
+python predict/predict.py -F /path/to/input_map.mrc -o /path/to/output_map_refined.mrc --mode HR --gpu 0 -b 8 -s 24
+```
 
 # Compile Accelerated Interpolation Module (interp3d)
 For faster processing (especially when using --interp_back), we recommend compiling the Fortran-based interp3d module using f2py.
