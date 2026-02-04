@@ -47,7 +47,7 @@ unzip example.zip -d ./example
 # Options in DEMO-EMReF
 | Option               | Description                                                                  |
 | -------------------- | ---------------------------------------------------------------------------- |
-| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc,.map,.ccp4 format)                        |
+| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc, .map, .ccp4 format)                        |
 | `-o, --output`       | Output refined map                                                           |
 | `--mode {HR,MR,ET}`  | Inference mode: HR (High Res, default), MR (Medium Res), ET (Tomography)     |
 | `--config`           | Custom JSON config file                                                      |
