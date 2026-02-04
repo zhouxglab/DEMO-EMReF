@@ -47,9 +47,9 @@ unzip example.zip -d ./example
 # Options in DEMO-EMReF
 | Option               | Description                                                                  |
 | -------------------- | ---------------------------------------------------------------------------- |
-| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc, .map, .ccp4 format)                        |
+| `-F, --input`        | Input cryo-EM / cryo-ET map (.mrc, .map, .ccp4 format)                       |
 | `-o, --output`       | Output refined map                                                           |
-| `--mode {HR,MR,ET}`  | Inference mode: HR (High Res, default), MR (Medium Res), ET (Tomography)     |
+| `--mode {HR,MR,ET}`  | Inference mode: HR (High resolution, default), MR (Medium resolution), ET (Tomography)     |
 | `--config`           | Custom JSON config file                                                      |
 | `--gpu`              | GPU ID(s), e.g. `0` or `0,1`                                                 |
 | `-b, --batch_size`   | Batch size (default: 8, increase if GPU memory allows)                       |
